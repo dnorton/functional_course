@@ -1,3 +1,3 @@
 object sample {
-    println 'hi'    
+    println("hi")
 }
