@@ -1,4 +1,3 @@
-
 //def abs(x:Double) = if (x >= 0) x else -x
 //
 //abs(-124)
@@ -40,12 +39,12 @@ def balance(chars: List[Char]): Boolean = {
 * Exercise 3
 */
 def countChange(money: Int, coins: List[Int]): Int = {
-    def iter(money:Int, coins: List[Int], count:Int):Int = {
-      if (money == 0) count + 1
-      else if (coins.isEmpty || money < 0) count
+    def iter(money:Int, coins: List[Int]):Int = {
+      if (money == 0) 1
+      else if (coins.isEmpty || money < 0) 0
       else {
-        iter(money, coins.tail, count) + iter(money - coins.head, coins, count)
+        iter(money, coins.tail) + iter(money - coins.head, coins)
       }
     }
-    iter(money, coins, 0)
-}
+    iter(money, coins)
+  }
