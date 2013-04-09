@@ -1,5 +1,4 @@
 
-
 //def abs(x:Double) = if (x >= 0) x else -x
 //
 //abs(-124)
@@ -17,29 +16,30 @@ def pascal(c: Int, r: Int): Int = {
 pascal(2,4)
 
 /**
- * Exercise 2
- */
+* Exercise 2
+*/
 def balance(chars: List[Char]): Boolean = {
-  var count = 0
-  def iter(chars: List[Char]):Int = {
-    val head:Char = chars.head
+  def iter(chars: List[Char], count:Int):Int = {
 
-    if (head == '(' && count >= 0) count += 1
-    else if (head == ')') count -= 1
-
-    if (count < 0 || chars.tail.isEmpty)
+    if (count < 0 || chars.isEmpty) {
       count
-    else
-      iter(chars.tail)
+    } else {
+      val head:Char = chars.head
+
+      if (head == '(' && count >= 0) iter(chars.tail, count + 1)
+      else if (head == ')') iter(chars.tail, count - 1)
+      else iter(chars.tail, count)
+
+    }
   }
-  iter(chars)
-  count == 0
+  iter(chars, 0) == 0
+
 }
 
- /**
-   * Exercise 3
-   */
-  def countChange(money: Int, coins: List[Int]): Int = {
+/**
+* Exercise 3
+*/
+def countChange(money: Int, coins: List[Int]): Int = {
     def iter(money:Int, coins: List[Int], count:Int):Int = {
       if (money == 0) count + 1
       else if (coins.isEmpty || money < 0) count
@@ -48,4 +48,4 @@ def balance(chars: List[Char]): Boolean = {
       }
     }
     iter(money, coins, 0)
-  }
+}
