@@ -36,3 +36,16 @@ def balance(chars: List[Char]): Boolean = {
   count == 0
 }
 
+ /**
+   * Exercise 3
+   */
+  def countChange(money: Int, coins: List[Int]): Int = {
+    def iter(money:Int, coins: List[Int], count:Int):Int = {
+      if (money == 0) count + 1
+      else if (coins.isEmpty || money < 0) count
+      else {
+        iter(money, coins.tail, count) + iter(money - coins.head, coins, count)
+      }
+    }
+    iter(money, coins, 0)
+  }
